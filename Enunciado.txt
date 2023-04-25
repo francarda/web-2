@@ -1,0 +1,25 @@
+La siguiente actividad se considera obligatoria para regularizar y/o promocionar la materia.
+Modifique la solución del ejercicio 1 de ajax.
+Muestre en una tabla de 2 columnas una cierta cantidad de usuarios fake (nombre, imagen y mail).
+ Tal cantidad debe ser solicitada al usuario por medio de un formulario.
+En la columna de la izquierda deben mostrarse los usuarios masculinos, en la de la derecha los 
+usuarios femeninos.
+Defina un botón que permita filtrar de la tabla (sin solicitar nuevamente los usuarios) los 
+usuarios que se han registrado hace mas de X años (X debe ser solicitado al usuario)
+Cuando el mòuse pase por arriba de la imagen del usuario debe aparecer un mensaje con el nombre 
+completo del usuario y su teléfono.
+Otro botón deberá permitir ordenar por apellido y nombre los usuarios listados (respetando la 
+separación entre hombres y mujeres) 
+Por último, debe generarse un combo (select) con los distintos paises de los usuarios (sin repetir)
+ para que pueda filtrarse el listado por un país.
+Fecha límite de entrega 28 de Abril
+Ajax 
+
+1.- Utilice Ajax para consumir la api https://randomuser.me/api/ que retorna en cada 
+petición los datos de perfil de un usuario fake. 
+Primero verifique en el navegador la api y compruebe que información retorna. 
+Utilice el visor de Json del sitio http://jsonviewer.stack.hu/ para pegar el texto plano de 
+json y con el visor facilitar el análisis de la respuesta. 
+Realice una página con un botón que permita mostrar los principales datos e imagen 
+pequeña del perfil recuperado en forma de lista. Agregue a cada entrada un botón para 
+eliminar esa entrada cuando sea necesario. 
