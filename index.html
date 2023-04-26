@@ -10,21 +10,51 @@
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <input type="button" value="Recuperar" id="recuperar" onclick="recuperar()">
+    <!--input type="button" value="Recuperar" id="recuperar" onclick="recuperar()"-->
     
     <form>
-        <label for="cantidad">Ingrese la cantidad de personas a juscar</label>
+        <label for="cantidad">Ingrese la cantidad de personas a Buscar</label>
         <input id="num" type="number" value="4">
         <button type="button" onclick="cantidad()"> Aceptar </button>
     </form>
+    <form>
+        <label for="antiguedad">Ingrese la antiguedad por la que desea filtrar</label>
+        <input id="antiguedad" type="number">
+        <button type="button" onclick="filtrar()"> Filtrar</button>
+        <button type="button" onclick="original()"> Deshacer Filtro</button>
+        <button type="button" onclick="ordenar()"> Ordenar</button>
+        <select name="select" id="seleccion" onchange="seleccion1()">
+            <option value="value1" selected>---</option>
+            
+        </select>
+
+    </form>
    
     <div class="container">
-        <div class="row" id="contenedor">
-       
+        <div class="row col" id="contenedor">
+            
         </div>
     </div>
     <div class="prueba" id="prueba"></div>
-    
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Hombres</th>
+            <th scope="col">Mujeres</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="row" id="hombres"></td>
+
+            <td id="mujeres"></td>
+           
+        </tbody>
+      </table>
+
+
+
     <script src="practico.js"></script>
 </body>
 </html>

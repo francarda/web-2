@@ -1,0 +1,6 @@
+Primero verifique en el navegador la api y compruebe que información retorna.
+Utilice el visor de Json del sitio http://jsonviewer.stack.hu/ para pegar el texto plano de
+json y con el visor facilitar el análisis de la respuesta.
+Realice una página con un botón que permita mostrar los principales datos e imagen
+pequeña del perfil recuperado en forma de lista. Agregue a cada entrada un botón para
+eliminar esa entrada cuando sea necesario. 

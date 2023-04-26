@@ -7,86 +7,129 @@ Realice una página con un botón que permita mostrar los principales datos e im
 pequeña del perfil recuperado en forma de lista. Agregue a cada entrada un botón para 
 eliminar esa entrada cuando sea necesario.  */
 
-//let contenedor= document.createElement("div");
-//contenedor.className+="container";
 const columna = document.createElement("div");
 columna.className="col-3";
-let contenedor= document.getElementById("contenedor")
+let contenedor= document.getElementById("contenedor");
+let hombres= document.getElementById("hombres");
+let mujeres= document.getElementById("mujeres")
+
 function funcEliminar(a){
 document.getElementById(a).remove();
 }
-let contador=0;
-/*function recuperar(){    
+let arreglo=[]
+function recuperar(){    
     
     fetch("https://randomuser.me/api/").
     then(response => response.json()).
     then(usuario=>{
-        let div =document.createElement("div")
-        let nombre=`Nombre: ${usuario.results[0].name.title} ${usuario.results[0].name.first} ${usuario.results[0].name.last} <br>`;
-        let direccion= `Direccion: ${usuario.results[0].location.street.name} ${usuario.results[0].location.street.number}<br>`;
-        let ciudad= `Ciudad: ${usuario.results[0].location.city}, Estado: ${usuario.results[0].location.state}, Pais: ${usuario.results[0].location.country}<br>`
-        let email= `E-mail: ${usuario.results[0].email}<br>`;
-        let edad= `Edad: ${usuario.results[0].dob.age}<br>`;
-        let foto=`${usuario.results[0].picture.medium}`;
-        let id= `${usuario.results[0].login.uuid}`;
-        contador++
-        console.log(id);
-        let imagen= document.createElement("img");
-        imagen.setAttribute("src", foto);
-        imagen.className= "imagenes";
-        console.log(nombre);  
-        let eliminar= document.createElement("button");
-        eliminar.innerHTML="Eliminar";
-        eliminar.setAttribute("onclick", `funcEliminar("${id}")`);
-        const columna = document.createElement("div");
-        columna.className="col-6 border bg-primary text-white rounded";
-        columna.innerHTML=nombre + direccion + ciudad+ email+ edad;
-        div.setAttribute("id", id);
-        div.appendChild(columna);
-        div.appendChild(imagen);
-        div.appendChild(eliminar)
-        contenedor.appendChild(div)
-        
-    });
-    
+        arreglo.push(usuario.results[0]);
+        objetos(usuario.results[0]);
+
+    }).catch(error=>console.log("error al cargar desde api"))
 }
-*/
-let arreglo=[];
+let selector= document.getElementById("seleccion");
+let paises=[]
 
-function cantidad() {
-   llenar().then(arreglo=> console.log("el arreglo tiene "+  arreglo.length))
- }
-
- function traerUno(){
-
-        return new Promise((resolve, reject) => {
-            let hola={}
-            fetch("https://randomuser.me/api/").
-            then(response => response.json()).
-            then(usuario => {
-            console.log(usuario)
-            hola = usuario;
-            arreglo.push(hola);
-            console.log(`${usuario.results[0].name.first}`)}
-            )
-
-        resolve(hola);
-});
-}
-
-
-const llenar = () => {
-    return new Promise((resolve, rechazar) => {
-    
-    
-    let numero = document.getElementById("num").value
-    for(let i=0; i<numero;i++){
-
-        traerUno().then(usuario=> arreglo.push(usuario))
+function objetos(usuario){
+    let div =document.createElement("div")
+    let nombre=`Nombre: ${usuario.name.title} ${usuario.name.first} ${usuario.name.last} <br>`;
+    let direccion= `Direccion: ${usuario.location.street.name} ${usuario.location.street.number}<br>`;
+    let ciudad= `Ciudad: ${usuario.location.city}, Estado: ${usuario.location.state}, Pais: ${usuario.location.country}<br>`
+    let email= `E-mail: ${usuario.email}<br>`;
+    let edad= `Edad: ${usuario.dob.age}<br>`;
+    let foto=`${usuario.picture.medium}`;
+    let id= `${usuario.login.uuid}`;
+    let pais= `${usuario.location.country}`;
+    if(!paises.includes(pais)){
+        paises.push(pais)
+        let option= document.createElement("option");
+        option.innerHTML=pais;
+        option.setAttribute("value", pais)
+        selector.appendChild(option)
     }
-    let idem=arreglo;
-    resolve(idem)
+    console.log(id);
+    let imagen= document.createElement("div");
+    imagen.style.backgroundImage= "url(" + foto + ")";
+    imagen.style.backgroundSize = "cover"
+    imagen.className= "imagenes";
+    imagen.addEventListener("mouseover", function(event){
+        let dev= document.createElement("div")
+        dev.innerHTML=`${usuario.name.title} ${usuario.name.first} ${usuario.name.last} <br> telefono: ${usuario.phone} `
+        dev.classList.add("cartel");
+        event.target.appendChild(dev)
+    
+    event.target.style.backgroundColor= "white"
+    },false);
+    imagen.addEventListener("mouseout", function(event){
+        event.target.innerHTML="" ;
     })
+    console.log(nombre);  
+    let eliminar= document.createElement("button");
+    eliminar.innerHTML="Eliminar";
+    eliminar.setAttribute("onclick", `funcEliminar("${id}")`);
+    const columna = document.createElement("div");
+    columna.className="col-6 border bg-primary text-white rounded";
+    columna.innerHTML=nombre + direccion + ciudad+ email+ edad;
+    div.setAttribute("id", id);
+    div.appendChild(columna);
+    div.appendChild(imagen);
+    div.appendChild(eliminar)
+    //contenedor.appendChild(div)
+    if(`${usuario.gender}` == "male"){
+        hombres.appendChild(div)
+    }else{
+        mujeres.appendChild(div)
+    }
+
 }
 
+function cantidad(){
+    arreglo= [];
+    selector.innerHTML= '<option value="value1" selected>---</option>'
+    hombres.innerHTML="";
+    mujeres.innerHTML="";  
+    let numero = document.getElementById("num").value;
+    
+    for(let i =0; i<numero; i++){
+        recuperar();
+    };
+  
+};
+function filtrar(){
+    let numero= document.getElementById("antiguedad").value;
+    let filtrados = arreglo.filter(user=> (parseInt(`${user.registered.age}`) > numero) );
+    hombres.innerHTML="";
+    mujeres.innerHTML="";
+    filtrados.forEach(usuario=>objetos(usuario))
+}
+function original(){
+    hombres.innerHTML="";
+    mujeres.innerHTML="";
+    arreglo.forEach(usuario=> objetos(usuario))
+}
+function ordenar(){
+    arreglo.sort(function(a, b) {
+        if (a.name.last > b.name.last) {
+          return 1;
+        }
+        if (a.name.last < b.name.last) {
 
+          return -1;
+        }
+        return 0;
+      });
+    //arreglo.sort(((a, b) => a.name.last - b.name.last));
+    hombres.innerHTML="";
+    mujeres.innerHTML="";
+    arreglo.forEach(usuario=> objetos(usuario))
+
+}
+function seleccion1(){
+    let aux= `${selector.value}`;
+    let filt= arreglo.filter(user => (`${user.location.country}`==`${aux}`));
+    console.log(aux);
+    console.log(filt)
+    hombres.innerHTML="";
+    mujeres.innerHTML="";
+    filt.forEach(usuario=> objetos(usuario))
+}

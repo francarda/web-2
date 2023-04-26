@@ -1,0 +1,84 @@
+//let contenedor= document.createElement("div");
+//contenedor.className+="container";
+
+/*
+function cantidad() {
+   ///llenar().then(array => llenarTabla(array));
+llenado()
+ }
+
+ function traerUno(){
+
+        return new Promise((resolve, reject) => {
+            let hola={}
+            fetch("https://randomuser.me/api/").
+            then(response => response.json()).
+            then(usuario => {
+            console.log(usuario)
+            hola = usuario;
+            console.log(`${usuario.results[0].name.first}`)}
+            )
+
+        resolve(hola);
+});
+}
+async function llenado(){
+    const idem = await llenar();
+    let hombres= document.getElementById("hombres");
+    let mujeres= document.getElementById("mujeres");
+    let arreglado=[];
+    idem.forEach(element => {
+        arreglado.push(formar(element));
+    });
+    let hom = arreglado.filter(item=> item.results[0].gender=="male");
+    let muj= arreglado.filter(item=> item.results[0].gender=="female")
+    hom.forEach(element=>{
+        hombres.appendChild(formar(element));
+    })
+    
+}
+
+
+const llenar = () => {
+    return new Promise((resolve, rechazar) => {
+    
+    
+    let numero = document.getElementById("num").value
+    for(let i=0; i<numero;i++){
+
+        traerUno().then(usuario=> arreglo.push(usuario))
+    }
+    let idem=arreglo;
+    resolve(idem)
+    })
+}
+
+function llenarTabla(array){
+    let hombres= document.getElementById("hombres");
+    let mujeres= document.getElementById("mujeres");
+    let arreglado=[];
+    array.forEach(element => {
+        arreglado.push(formar(element));
+    });
+    let hom = arreglado.filter(item=> item.results[0].gender=="male");
+    let muj= arreglado.filter(item=> item.results[0].gender=="female")
+    hom.forEach(element=>{
+        hombres.appendChild(formar(element));
+    })
+    
+}
+
+function formar(usuario){
+    console.log("el usuario es: " + usuario);
+    
+    let nombre= `${usuario.results[0].name.first}<br>`;
+    let email= `${usuario.results[0].email}<br>`;
+    let foto=`${usuario.results[0].picture.medium}`;
+    let imagen= document.createElement("img");
+        imagen.setAttribute("src", foto);
+        imagen.className= "imagenes";
+    let objetos= document.createElement("div")
+    objetos.innerHTML=nombre + email + imagen;
+    return objetos;
+
+}*/
