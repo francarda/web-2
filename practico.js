@@ -15,7 +15,9 @@ let contenedor= document.getElementById("contenedor")
 function funcEliminar(a){
 document.getElementById(a).remove();
 }
-function recuperar(){    
+let contador=0;
+/*function recuperar(){    
+    
     fetch("https://randomuser.me/api/").
     then(response => response.json()).
     then(usuario=>{
@@ -26,8 +28,8 @@ function recuperar(){
         let email= `E-mail: ${usuario.results[0].email}<br>`;
         let edad= `Edad: ${usuario.results[0].dob.age}<br>`;
         let foto=`${usuario.results[0].picture.medium}`;
-        let id= `${usuario.results[0].id.value}`
-        id= id.replace();
+        let id= `${usuario.results[0].login.uuid}`;
+        contador++
         console.log(id);
         let imagen= document.createElement("img");
         imagen.setAttribute("src", foto);
@@ -35,7 +37,7 @@ function recuperar(){
         console.log(nombre);  
         let eliminar= document.createElement("button");
         eliminar.innerHTML="Eliminar";
-        eliminar.setAttribute("onclick", `funcEliminar(${id})`);
+        eliminar.setAttribute("onclick", `funcEliminar("${id}")`);
         const columna = document.createElement("div");
         columna.className="col-6 border bg-primary text-white rounded";
         columna.innerHTML=nombre + direccion + ciudad+ email+ edad;
@@ -48,4 +50,43 @@ function recuperar(){
     });
     
 }
+*/
+let arreglo=[];
+
+function cantidad() {
+   llenar().then(arreglo=> console.log("el arreglo tiene "+  arreglo.length))
+ }
+
+ function traerUno(){
+
+        return new Promise((resolve, reject) => {
+            let hola={}
+            fetch("https://randomuser.me/api/").
+            then(response => response.json()).
+            then(usuario => {
+            console.log(usuario)
+            hola = usuario;
+            arreglo.push(hola);
+            console.log(`${usuario.results[0].name.first}`)}
+            )
+
+        resolve(hola);
+});
+}
+
+
+const llenar = () => {
+    return new Promise((resolve, rechazar) => {
+    
+    
+    let numero = document.getElementById("num").value
+    for(let i=0; i<numero;i++){
+
+        traerUno().then(usuario=> arreglo.push(usuario))
+    }
+    let idem=arreglo;
+    resolve(idem)
+    })
+}
+
 
