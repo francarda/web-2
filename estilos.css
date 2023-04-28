@@ -1,11 +1,61 @@
 .imagenes{
-    height: 100px;
-   width: 100px;
+    height: 150px;
+   width: 150px;
+   margin: 20px
+}
+body{
+    background-color:beige;
+}
+.eliminar{
+    width: 30%;
+    margin-bottom: 20px;
+}
+/*imagenes y datos*/
+.datos{
+    width: 75%;
+    padding: 10px
+}
+
+.id{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    
 }
 .cartel{
-    background-color:rgba(255, 255, 255, 0.7);
+    
+    float: center;
+    background-color:red;
     width: auto;
-    height: auto;
     z-index: 0;
-    color: red
+    color: white;
+    overflow: visible;
+    border: solid black 1px;
+    border-radius: 2px;
+    text-align: center;
+}
+.color{
+    background-color: cornflowerblue;
+    color: white
+}
+.color:hover{ 
+    background-color: rgb(0, 119, 255);
+    color: blue
+}
+.color:defined{
+    background-color: cornflowerblue;
+    color: white
+}
+.imagenes{
+    transition: all;
+}
+.imagenes:hover{
+    transition-duration: 0.5s;
+    transform: scale(1.2);
+    box-shadow: 0px 5px 5px black;
+
+}
+.id{
+    border-top: solid rgb(9, 9, 112) 1px;
+
 }

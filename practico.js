@@ -32,11 +32,11 @@ let paises=[]
 
 function objetos(usuario){
     let div =document.createElement("div")
-    let nombre=`Nombre: ${usuario.name.title} ${usuario.name.first} ${usuario.name.last} <br>`;
-    let direccion= `Direccion: ${usuario.location.street.name} ${usuario.location.street.number}<br>`;
-    let ciudad= `Ciudad: ${usuario.location.city}, Estado: ${usuario.location.state}, Pais: ${usuario.location.country}<br>`
+    let nombre=`Nombre: ${usuario.name.first} ${usuario.name.last} <br>`;
+    //let direccion= `Direccion: ${usuario.location.street.name} ${usuario.location.street.number}<br>`;
+    //let ciudad= `Ciudad: ${usuario.location.city}, Estado: ${usuario.location.state}, Pais: ${usuario.location.country}<br>`
     let email= `E-mail: ${usuario.email}<br>`;
-    let edad= `Edad: ${usuario.dob.age}<br>`;
+    // let edad= `Edad: ${usuario.dob.age}<br>`;
     let foto=`${usuario.picture.medium}`;
     let id= `${usuario.login.uuid}`;
     let pais= `${usuario.location.country}`;
@@ -52,25 +52,35 @@ function objetos(usuario){
     imagen.style.backgroundImage= "url(" + foto + ")";
     imagen.style.backgroundSize = "cover"
     imagen.className= "imagenes";
+    
     imagen.addEventListener("mouseover", function(event){
         let dev= document.createElement("div")
         dev.innerHTML=`${usuario.name.title} ${usuario.name.first} ${usuario.name.last} <br> telefono: ${usuario.phone} `
         dev.classList.add("cartel");
-        event.target.appendChild(dev)
-    
+        /*event.target.appendChild(dev)*/
+        event.target.parentNode.appendChild(dev)
     event.target.style.backgroundColor= "white"
     },false);
+
     imagen.addEventListener("mouseout", function(event){
-        event.target.innerHTML="" ;
+        //event.target.innerHTML="" ;
+        let actual= event.target;
+        let ultimo= actual.nextSibling.nextSibling;
+
+        actual.parentNode.removeChild(ultimo)
     })
+
+
     console.log(nombre);  
     let eliminar= document.createElement("button");
     eliminar.innerHTML="Eliminar";
+    eliminar.className= "btn color eliminar";
     eliminar.setAttribute("onclick", `funcEliminar("${id}")`);
     const columna = document.createElement("div");
-    columna.className="col-6 border bg-primary text-white rounded";
-    columna.innerHTML=nombre + direccion + ciudad+ email+ edad;
+    columna.className="border bg-primary text-white rounded datos";
+    columna.innerHTML= nombre + email;
     div.setAttribute("id", id);
+    div.className="id"
     div.appendChild(columna);
     div.appendChild(imagen);
     div.appendChild(eliminar)
@@ -89,6 +99,8 @@ function cantidad(){
     hombres.innerHTML="";
     mujeres.innerHTML="";  
     let numero = document.getElementById("num").value;
+    let visual = document.getElementById("visual")
+    visual.classList.remove("d-none")
     
     for(let i =0; i<numero; i++){
         recuperar();

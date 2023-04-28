@@ -11,49 +11,78 @@
 </head>
 <body>
     <!--input type="button" value="Recuperar" id="recuperar" onclick="recuperar()"-->
-    
-    <form>
-        <label for="cantidad">Ingrese la cantidad de personas a Buscar</label>
-        <input id="num" type="number" value="4">
-        <button type="button" onclick="cantidad()"> Aceptar </button>
-    </form>
-    <form>
-        <label for="antiguedad">Ingrese la antiguedad por la que desea filtrar</label>
-        <input id="antiguedad" type="number">
-        <button type="button" onclick="filtrar()"> Filtrar</button>
-        <button type="button" onclick="original()"> Deshacer Filtro</button>
-        <button type="button" onclick="ordenar()"> Ordenar</button>
-        <select name="select" id="seleccion" onchange="seleccion1()">
-            <option value="value1" selected>---</option>
-            
-        </select>
+    <div class="container ml-0">
+      <div class="row justify-content-center bg-primary rounded-4 bg-opacity-50 border mb-5 mx-0">
 
-    </form>
-   
-    <div class="container">
+        <div class="align-self-center col-9 p-3 rounded-4 m-4">
+          
+          <form>
+            <label class="text-center text-white col-10 align-self-center m-3 " for="cantidad"><h3>Ingrese la cantidad de personas a Buscar</h3></label>
+            
+          <div class="row justify-content-evenly">
+
+              <input class="col-3 rounded-2" id="num" type="number" value="4">
+              <button class="col-3 rounded-2 btn btn-primary" type="button" onclick="cantidad()"> Aceptar </button>
+            </div>
+        </form>
+      </div>
+      </div>
+    </div>
+   <div class="d-none" id="visual">
+
+     <form>
+      <div class="container border bg-white">
+
+        <div class="row mt-4 justify-content-center">
+
+          <label class="col-6 border " for="antiguedad"><h5>Ingrese la antiguedad por la que desea filtrar</h5></label>
+          <input class="col-1 mx-2" id="antiguedad" type="number">
+          <button class="col-2 btn color" type="button" onclick="filtrar()"> Filtrar</button>
+        </div>
+        <div class="row mt-4 justify-content-center">
+          <label class="col-6 p-1 border text-center mx-2" for="seleccion"><h5>Filtrar por paises</h5></label>
+          <select class="col-3 p-1 btn color mx-2" name="select" id="seleccion" onchange="seleccion1()">
+            
+            <option class="col-3 form-select" value="value1" selected>---</option>
+            
+          </select>
+          <div class="row gx-5 mt-4 justify-content-evenly mb-5">
+            
+            <button class="col-3 p-1 btn color" type="button" onclick="original()"> Deshacer Filtro</button>
+            <button class="col-3 p-1 btn color"  type="button" onclick="ordenar()"> Ordenar</button>
+            
+          </form>
+          
+        </div>
+      </div>
+    </div>
+      <div class="container">
         <div class="row col" id="contenedor">
             
         </div>
     </div>
-    <div class="prueba" id="prueba"></div>
-    <table class="table">
+    <div class="container justify-content-center">
+
+      <table class="table mt-5 bg-white">
         <thead>
           <tr>
             <th scope="col">Hombres</th>
             <th scope="col">Mujeres</th>
-           
+            
           </tr>
         </thead>
         <tbody>
           <tr>
             <td scope="row" id="hombres"></td>
-
+            
             <td id="mujeres"></td>
-           
-        </tbody>
-      </table>
-
-
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+        
+        
 
     <script src="practico.js"></script>
 </body>
